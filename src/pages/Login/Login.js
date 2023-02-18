@@ -31,22 +31,34 @@ const Login = () => {
       })
       .then(res => {
         if (res.data.success) {
-          localStorage.setItem('access-token', res.data.data.accessToken);
+          localStorage.setItem('user', JSON.stringify(res.data.data));
           setUser(prev => {
             return {
               ...prev,
               loading: false,
-              user: res.data.data.user,
+              user: res.data.data,
             };
           });
 
           navigate('/home');
         } else {
           console.log(res);
+          setUser(prev => {
+            return {
+              ...prev,
+              loading: false,
+            };
+          });
         }
       })
       .catch(err => {
         console.error(['error:', err]);
+        setUser(prev => {
+          return {
+            ...prev,
+            loading: false,
+          };
+        });
       });
   };
   return (

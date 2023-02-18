@@ -8,18 +8,18 @@ const ProtectedRoutes = ({ children }) => {
 
   const location = useLocation();
 
+  let user1 = localStorage.getItem('user');
+  user1 = JSON.parse(user1);
+  console.log(user1);
+
   if (user.loading) {
     return <p>Loading....</p>;
   }
 
   const token = localStorage.getItem('access-token');
 
-  if (!token) {
-    if (!user.user) {
-      return (
-        <Navigate to="/login" state={{ from: location }} replace></Navigate>
-      );
-    }
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
   }
 
   return children;

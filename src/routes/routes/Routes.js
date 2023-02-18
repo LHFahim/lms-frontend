@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import BookDetails from '../../components/BookDetails/BookDetails';
 
 import Books from '../../components/Books/Books';
 import Error from '../../components/Error/Error';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Main from '../../layout/Main';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
@@ -25,9 +27,11 @@ export const routes = createBrowserRouter([
       {
         path: '/home',
         loader: async () => {
+          let user = JSON.parse(localStorage.getItem('user'));
+
           return await fetch('http://localhost:5000/api/v1/books', {
             method: 'GET',
-            headers: { Authorization: localStorage.getItem('access-token') },
+            headers: { Authorization: user?.accessToken },
           });
         },
         element: (

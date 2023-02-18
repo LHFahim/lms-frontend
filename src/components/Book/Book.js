@@ -20,11 +20,8 @@ const Book = ({ book }) => {
             <h1 className="text-zinc-400">
               Cost: {cost} {currency}
             </h1>
-            <Link
-              to={`/book/${id}`}
-              className="py-2 px-3 bg-orange-500 rounded-lg text-white"
-            >
-              Read more
+            <Link to={`/book/${id}`} className="text-orange-500">
+              more...
             </Link>
           </div>
         </div>
