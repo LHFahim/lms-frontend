@@ -1,8 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 
-const Book = ({ book }) => {
-  const { id, title, author, cost, currency, image } = book;
+const BookDetails = () => {
+  let bookData = useLoaderData();
+
+  bookData = bookData.data;
+  console.log('🚀 ~ file: BookDetails.js:6 ~ BookDetails ~ bookData', bookData);
+
+  const {
+    author,
+    title,
+    description,
+    cost,
+    currency,
+    quantity,
+    category,
+    image,
+  } = bookData;
   return (
     <div>
       <div className="border border-gray-200 p-3 shadow-md rounded-lg">
@@ -13,19 +27,20 @@ const Book = ({ book }) => {
           <div className="border border-b-2 w-2/4 mx-auto border-orange-500"></div>
           <div>
             <h1 className="font-semibold">{title}</h1>
+            <small>{category}</small>
             <h1 className="italic">{author}</h1>
+          </div>
+          <div>
+            <p>{description}</p>
+          </div>
+          <div>
+            <h2>Available: {quantity}</h2>
           </div>
           <div className="border border-b-2 border-orange-500"></div>
           <div className="flex justify-between items-center">
             <h1 className="text-zinc-400">
               Cost: {cost} {currency}
             </h1>
-            <Link
-              to={`/book/${id}`}
-              className="py-2 px-3 bg-orange-500 rounded-lg text-white"
-            >
-              Read more
-            </Link>
           </div>
         </div>
       </div>
@@ -33,4 +48,4 @@ const Book = ({ book }) => {
   );
 };
 
-export default Book;
+export default BookDetails;

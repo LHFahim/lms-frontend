@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import BookDetails from '../../components/BookDetails/BookDetails';
 
 import Books from '../../components/Books/Books';
 import Error from '../../components/Error/Error';
@@ -32,6 +33,23 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <Books />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: '/book/:id',
+        loader: async ({ params }) => {
+          return await fetch(
+            `http://localhost:5000/api/v1/books/${params.id}`,
+            {
+              method: 'GET',
+              headers: { Authorization: localStorage.getItem('access-token') },
+            }
+          );
+        },
+        element: (
+          <ProtectedRoutes>
+            <BookDetails />
           </ProtectedRoutes>
         ),
       },
