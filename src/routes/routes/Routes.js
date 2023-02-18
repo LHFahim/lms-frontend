@@ -4,12 +4,17 @@ import Books from '../../components/Books/Books';
 import Error from '../../components/Error/Error';
 import Main from '../../layout/Main';
 import Login from '../../pages/Login/Login';
+import Register from '../../pages/Register/Register';
 import ProtectedRoutes from '../ProtectedRoutes/ProtectedRoutes';
 
 export const routes = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 
   {
