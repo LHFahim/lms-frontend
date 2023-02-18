@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/add-book.css" />
+  </head>
+  <body>
+    <header class="w-4/12 mx-auto bg-orange-500">
+      <div class="flex justify-center mt-10 py-5 shadow-2xl">
+        <h1 class="text-3xl text-white font-black">
+          Online Library Management System
+        </h1>
+      </div>
+    </header>
+    <!-- main form section -->
+    <main class="w-6/12 mx-auto shadow-2xl">
+      <section class="add-book m-10">
+        <header>
+          <div class="flex justify-center py-10">
+            <h1 class="text-2xl font-bold">Add a new book</h1>
+          </div>
+        </header>
+        <main>
+          <form class="flex flex-col space-y-10 pb-10">
+            <div class="grid grid-cols-2 gap-x-28 gap-y-8">
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label class="" for="book_name" class="">Book name</label>
+                <input
+                  type="text"
+                  name="book_name"
+                  id="book_name"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="author_name" class="">Author name</label>
+                <input
+                  type="text"
+                  name="author_name"
+                  id="author_name"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="publication" class="">Publication</label>
+                <input
+                  type="text"
+                  name="publication"
+                  id="publication"
+                  class="border border-orange-500 rounded-md"
+                  placeholder=""
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="quantity" class="">Quantity</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  id="quantity"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="cost" class="">Cost</label>
+                <input
+                  type="number"
+                  name="cost"
+                  id="cost"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="category" class="">Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  id="category"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="tags" class="">Tags</label>
+                <input
+                  type="text"
+                  name="tags"
+                  id="tags"
+                  class="border border-orange-500 rounded-md"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-[1fr_2fr]">
+                <label for="summary" class="">Summary</label>
+                <textarea
+                  name="summary"
+                  id="summary"
+                  class="border border-orange-500 rounded-md"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="flex justify-end">
+              <button
+                class="bg-orange-500 text-white py-2 text-xl w-2/12 rounded-md"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </main>
+      </section>
+    </main>
+  </body>
+</html>
