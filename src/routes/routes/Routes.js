@@ -11,14 +11,7 @@ export const routes = createBrowserRouter([
     path: '/login',
     element: <Login />,
   },
-  // {
-  //   path: '/home',
-  //   element: (
-  //     <ProtectedRoutes>
-  //       <Book />
-  //     </ProtectedRoutes>
-  //   ),
-  // },
+
   {
     path: '/',
     element: <Main />,
