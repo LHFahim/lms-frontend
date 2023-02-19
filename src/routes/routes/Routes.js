@@ -4,6 +4,7 @@ import BookDetails from '../../components/BookDetails/BookDetails';
 
 import Books from '../../components/Books/Books';
 import Error from '../../components/Error/Error';
+import FilteredResults from '../../components/FilteredResults/FilteredResults';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Main from '../../layout/Main';
 import Login from '../../pages/Login/Login';
@@ -54,6 +55,15 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <BookDetails />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: '/book/filteredResults',
+
+        element: (
+          <ProtectedRoutes>
+            <FilteredResults />
           </ProtectedRoutes>
         ),
       },

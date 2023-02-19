@@ -1,16 +1,19 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const BookCategories = () => {
   const [categories, setCategories] = useState({
     values: [],
     response: [],
   });
+
+  const navigate = useNavigate();
+
   const handleCategories = async event => {
     const { value, checked } = event.target;
     const { values: languages } = categories;
-
-    console.log(`${value} is ${checked}`);
 
     // Case 1 : The user checks the box
     if (checked) {
@@ -27,15 +30,32 @@ const BookCategories = () => {
         response: languages.filter(e => e !== value),
       });
     }
+  };
+
+  const handleCategoriesSubmit = async event => {
+    event.preventDefault();
+
+    let localStorageUser = localStorage.getItem('user');
+    localStorageUser = JSON.parse(localStorageUser);
 
     try {
       const response = await axios.post(
         `http://localhost:5000/api/v1/books/filter`,
-        { category: categories.values }
+        { category: categories.values },
+        { headers: { Authorization: localStorageUser.accessToken } }
       );
+
+      localStorage.setItem('filterResults', JSON.stringify(response.data.data));
+      navigate('/book/filteredResults');
+      window.location.reload(true);
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleClearCategories = () => {
+    localStorage.removeItem('filterResults');
+    window.location.reload(true);
   };
 
   return (
@@ -43,7 +63,7 @@ const BookCategories = () => {
       <div>
         <h1 className="text-lg mb-2">Choose categories</h1>
       </div>
-      <form onSubmit={handleCategories}>
+      <form onSubmit={handleCategoriesSubmit}>
         {/* single category */}
         <div className="space-x-2 flex items-center">
           <input
@@ -144,7 +164,16 @@ const BookCategories = () => {
           <label htmlFor="adventure">Adventure</label>
         </div>
 
-        <button className="border px-2 rounded mt-2">Filter</button>
+        {/* buttons */}
+        <div className="space-x-2">
+          <button className="border px-2 rounded mt-2">Filter</button>
+          <button
+            onClick={handleClearCategories}
+            className="border px-2 rounded mt-2"
+          >
+            Clear
+          </button>
+        </div>
       </form>
     </div>
   );

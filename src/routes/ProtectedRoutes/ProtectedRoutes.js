@@ -8,9 +8,9 @@ const ProtectedRoutes = ({ children }) => {
 
   const location = useLocation();
 
-  let user1 = localStorage.getItem('user');
-  user1 = JSON.parse(user1);
-  console.log(user1);
+  // let user1 = localStorage.getItem('user');
+  // user1 = JSON.parse(user1);
+  // console.log(user1.accessToken);
 
   if (user.loading) {
     return <p>Loading....</p>;
