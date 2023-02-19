@@ -4,9 +4,9 @@ import AuthContext from '../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
   return (
-    <header className="w-4/12 mx-auto bg-orange-500">
+    <header className="w-4/12 mx-auto bg-zinc-800">
       <div className="flex justify-center mt-10 py-5 shadow-2xl">
-        <h1 className="text-3xl text-white font-black">
+        <h1 className="text-3xl  font-black">
           Online Library Management System
         </h1>
       </div>

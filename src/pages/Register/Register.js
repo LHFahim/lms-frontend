@@ -153,7 +153,7 @@ const Register = () => {
           </div>
 
           <div>
-            <button className="bg-orange-500 text-white py-2 text-xl w-2/12 rounded-md">
+            <button className="bg-zinc-800 text-white py-2 text-xl w-2/12 rounded-md">
               Submit
             </button>
           </div>

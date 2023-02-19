@@ -55,7 +55,7 @@ const BookDetails = () => {
             </h1>
             <button
               onClick={() => handleBorrowBook(id)}
-              className="py-2 px-3 bg-orange-500 rounded-lg text-white"
+              className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
             >
               Borrow Book
             </button>

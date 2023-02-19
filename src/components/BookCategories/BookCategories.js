@@ -61,7 +61,7 @@ const BookCategories = () => {
   return (
     <div>
       <div>
-        <h1 className="text-lg mb-2">Choose categories</h1>
+        <h1 className="text-lg mb-2">Choose a category</h1>
       </div>
       <form onSubmit={handleCategoriesSubmit}>
         {/* single category */}

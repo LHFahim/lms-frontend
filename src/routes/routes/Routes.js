@@ -28,7 +28,7 @@ export const routes = createBrowserRouter([
       {
         path: '/home',
         loader: async () => {
-          let user = JSON.parse(localStorage.getItem('user'));
+          const user = JSON.parse(localStorage.getItem('user'));
 
           return await fetch('http://localhost:5000/api/v1/books', {
             method: 'GET',
@@ -44,11 +44,12 @@ export const routes = createBrowserRouter([
       {
         path: '/book/:id',
         loader: async ({ params }) => {
+          const user = JSON.parse(localStorage.getItem('user'));
           return await fetch(
             `http://localhost:5000/api/v1/books/${params.id}`,
             {
               method: 'GET',
-              headers: { Authorization: localStorage.getItem('access-token') },
+              headers: { Authorization: user?.accessToken },
             }
           );
         },
