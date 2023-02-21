@@ -50,12 +50,32 @@ const BookDetails = () => {
     }
   };
 
+  const handleReturnBook = async id => {
+    const response = await axios.patch(
+      `http://localhost:5000/api/v1/books/${id}/return`,
+      {},
+      { headers: { Authorization: user.user.accessToken } }
+    );
+
+    if (response.data.success) {
+      let tempBorrowedBook = JSON.parse(localStorage.getItem('borrowedBook'));
+
+      if (tempBorrowedBook) {
+        const data = tempBorrowedBook.filter(d => d !== id);
+
+        localStorage.setItem('borrowedBook', JSON.stringify(data));
+        setIsBorrowed(false);
+      }
+    }
+  };
+
   useEffect(() => {
     const retrievedBorrowedBook = JSON.parse(
       localStorage.getItem('borrowedBook')
     );
     if (retrievedBorrowedBook?.find(book => book === id)) setIsBorrowed(true);
   }, [id]);
+
   return (
     <div>
       <div className="border border-gray-200 p-3 shadow-md rounded-lg">
@@ -85,7 +105,12 @@ const BookDetails = () => {
             </div>
 
             {isBorrowed ? (
-              <p>Borrowed</p>
+              <button
+                onClick={() => handleReturnBook(id)}
+                className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
+              >
+                Return Book
+              </button>
             ) : (
               <button
                 onClick={() => handleBorrowBook(id)}

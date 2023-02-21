@@ -44,7 +44,7 @@ const Rightbar = () => {
 
   return (
     <main className="space-y-5">
-      <div className="shadow-2xl w-11/12 mx-auto bg-zinc-800 hover:bg-zinc-50 hover:text-zinc-800 duration-200">
+      <div className="shadow-2xl w-11/12 mx-auto bg-zinc-800 hover:bg-zinc-50 hover:text-zinc-800 hover:rounded-2xl hover:duration-300">
         <section>
           <div className="p-2 space-y-3">
             <h1>
