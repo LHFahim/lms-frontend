@@ -41,7 +41,7 @@ const BookCategories = () => {
     try {
       const response = await axios.post(
         `http://localhost:5000/api/v1/books/filter`,
-        { category: categories.values },
+        { tags: categories.values },
         { headers: { Authorization: localStorageUser.accessToken } }
       );
 

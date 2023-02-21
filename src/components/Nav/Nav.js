@@ -23,8 +23,13 @@ const Nav = () => {
             </Link>
           </li>
           <li>
+            <Link to={`/borrowed-books`} className="text-lg">
+              Borrowed Book
+            </Link>
+          </li>
+          <li>
             <button onClick={handleLogout} className="text-lg">
-              Logout?
+              Logout
             </button>
           </li>
         </ul>

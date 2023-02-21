@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Book = ({ book }) => {
-  const { id, title, author, cost, currency, image } = book;
+  const { id, title, author, image, tags } = book;
   return (
     <div>
       <div className="border border-gray-200 p-3 shadow-md rounded-lg">
@@ -17,11 +17,8 @@ const Book = ({ book }) => {
           </div>
           <div className="border border-b-2 border-orange-500"></div>
           <div className="flex justify-between items-center">
-            <h1 className="text-zinc-400">
-              Cost: {cost} {currency}
-            </h1>
             <Link to={`/book/${id}`} className="text-orange-500">
-              more...
+              Find out more...
             </Link>
           </div>
         </div>
