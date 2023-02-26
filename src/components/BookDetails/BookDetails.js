@@ -3,7 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
-const BookDetails = () => {
+const BookDetails = book => {
+  console.log('🚀 ~ file: BookDetails.js:7 ~ BookDetails ~ book:', book);
   const { user } = useContext(AuthContext);
 
   let bookData = useLoaderData();
@@ -20,6 +21,7 @@ const BookDetails = () => {
     quantity,
     tags,
     image,
+    shelf,
     id,
   } = bookData;
 
@@ -36,10 +38,6 @@ const BookDetails = () => {
       if (!tempBorrowedBook) {
         const tempArray = [id];
         tempBorrowedBook = tempArray;
-        console.log(
-          '🚀 ~ file: BookDetails.js:45 ~ handleBorrowBook ~ tempBorrowedBook',
-          tempBorrowedBook
-        );
 
         localStorage.setItem('borrowedBook', JSON.stringify(tempBorrowedBook));
         setIsBorrowed(true);
@@ -93,6 +91,7 @@ const BookDetails = () => {
             </div>
 
             <h1 className="italic">{author}</h1>
+            <small>Shelf: {shelf}</small>
           </div>
           <div>
             <p>{description}</p>
