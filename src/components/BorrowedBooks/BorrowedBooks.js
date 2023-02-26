@@ -5,18 +5,23 @@ import Book from '../Book/Book';
 const BorrowedBooks = () => {
   let borrowdBookData = useLoaderData();
 
-  borrowdBookData = borrowdBookData?.data;
+  if (borrowdBookData.success) {
+    borrowdBookData = borrowdBookData?.data;
+  }
+
+  let mapKey = 0;
 
   return (
-    <main>
-      {borrowdBookData ? (
-        <>
-          <div className="w-2/6">
-            <Book book={borrowdBookData.book} />
-            <h2>You borrowed it on {borrowdBookData.borrowedDate}</h2>
-            <small>Remaining: {borrowdBookData.remainingDays.days} days</small>
-          </div>
-        </>
+    <main className="grid grid-cols-3 gap-5">
+      {borrowdBookData.length ? (
+        borrowdBookData.map(book => {
+          return (
+            <div key={mapKey++} className="">
+              <Book book={book.book}></Book>
+              <h1>Remaining days: {book.remainingDays.days}</h1>
+            </div>
+          );
+        })
       ) : (
         <p>No book was borrowed</p>
       )}

@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 const Rightbar = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const [previousBook, setPreviousBook] = useState({
-    title: '',
-    author: '',
-    tags: '',
-  });
+  const [previousBook, setPreviousBook] = useState();
+  // const [previousBook, setPreviousBook] = useState({
+  //   title: '',
+  //   author: '',
+  //   tags: '',
+  // });
+
   const [recommendedBook, setRecommendedBook] = useState({
     title: '',
     author: '',
@@ -69,7 +71,7 @@ const Rightbar = () => {
   getReadBooks();
 
   return (
-    <main className="space-y-5">
+    <main className="space-y-5 ml-2">
       {/* search book section starts */}
 
       <section className="w-11/12 mx-auto space-y-4">
@@ -99,35 +101,40 @@ const Rightbar = () => {
           })}
         </div>
       </section>
+
       {/* recommend book section starts */}
-      <section className="space-y-3">
-        <div className="shadow-2xl w-11/12 mx-auto bg-aqua">
-          <section>
-            <div className="p-2 space-y-3">
-              <h1>
-                Hey{' '}
-                <strong className="text-orange-500">
-                  {user.user.firstName}
-                </strong>
-                , you previously read {previousBook.title} by{' '}
-                {previousBook.author}!
-              </h1>
-              <h1>You might like the book below 😉</h1>
+      {previousBook ? (
+        <section className="space-y-3">
+          <div className="shadow-2xl w-11/12 mx-auto bg-aqua">
+            <section>
+              <div className="p-2 space-y-3">
+                <h1>
+                  Hey{' '}
+                  <strong className="text-orange-500">
+                    {user.user.firstName}
+                  </strong>
+                  , you previously read {previousBook.title} by{' '}
+                  {previousBook.author}!
+                </h1>
+                <h1>You might like the book below 😉</h1>
+              </div>
+              <div></div>
+            </section>
+          </div>
+          <div className="shadow-2xl w-8/12 mx-auto bg-yellow-700 text-yellow-300">
+            <div className="grid grid-rows-3 text-center">
+              <strong>{recommendedBook.title}</strong>
+              <h1>{recommendedBook.author}</h1>
+              <h1>{recommendedBook.tags}</h1>
             </div>
-            <div></div>
-          </section>
-        </div>
-        <div className="shadow-2xl w-8/12 mx-auto bg-yellow-700 text-yellow-300">
-          <div className="grid grid-rows-3 text-center">
-            <strong>{recommendedBook.title}</strong>
-            <h1>{recommendedBook.author}</h1>
-            <h1>{recommendedBook.tags}</h1>
+            <div className="w-2/4 mx-auto">
+              <img src={recommendedBook.image} alt="" />
+            </div>
           </div>
-          <div className="w-2/4 mx-auto">
-            <img src={recommendedBook.image} alt="" />
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <></>
+      )}
     </main>
   );
 };

@@ -4,7 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const BookDetails = book => {
-  console.log('🚀 ~ file: BookDetails.js:7 ~ BookDetails ~ book:', book);
   const { user } = useContext(AuthContext);
 
   let bookData = useLoaderData();
