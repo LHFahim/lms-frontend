@@ -80,7 +80,7 @@ const Rightbar = () => {
           <div className="flex justify-center">
             <input
               type="text"
-              className="px-10 py-2"
+              className="px-10 py-2 bg-aqua focus:outline-none"
               onChange={event => setQuery(event.target.value)}
             />
           </div>
@@ -100,8 +100,8 @@ const Rightbar = () => {
         </div>
       </section>
       {/* recommend book section starts */}
-      <section>
-        <div className="shadow-2xl w-11/12 mx-auto bg-zinc-800 hover:bg-zinc-50 hover:text-zinc-800 hover:rounded-2xl hover:duration-300">
+      <section className="space-y-3">
+        <div className="shadow-2xl w-11/12 mx-auto bg-aqua">
           <section>
             <div className="p-2 space-y-3">
               <h1>

@@ -52,7 +52,7 @@ const Wallet = () => {
   handleWallet();
   return (
     <div>
-      <div className="border w-3/4 bg-zinc-800 text-white py-2 flex flex-col items-center">
+      <div className="w-3/4 bg-aqua text-white py-2 flex flex-col items-center">
         <h3 className="text-lg">My wallet</h3>
         {wallet ? (
           <p>
