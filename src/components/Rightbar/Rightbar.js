@@ -86,10 +86,13 @@ const Rightbar = () => {
           </div>
         </div>
         {/* result */}
-        <div className="border border-orange-500 text-center w-11/12 mx-auto py-2 hover:bg-zinc-500 hover:text-zinc-800 text-lg hover:font-extrabold">
+        <div className="">
           {searchedData.map(book => {
             return (
-              <div key={book.id}>
+              <div
+                className="border border-orange-500  text-center w-11/12 mx-auto py-2 hover:bg-zinc-500 hover:text-zinc-800 text-lg hover:font-extrabold"
+                key={book.id}
+              >
                 <Link to={`/book/${book.id}`}>{book.title}</Link>
               </div>
             );
