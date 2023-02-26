@@ -5,7 +5,7 @@ const Book = ({ book }) => {
   const { id, title, author, image, tags } = book;
   return (
     <div>
-      <div className="border border-gray-200 p-3 shadow-md rounded-lg">
+      <div className=" p-3  rounded-lg hover:scale-105 duration-300 hover:shadow-2xl">
         <div className="flex justify-center">
           <img className="w-3/4" src={image} alt="" />
         </div>

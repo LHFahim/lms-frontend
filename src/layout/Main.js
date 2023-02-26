@@ -11,7 +11,7 @@ const Main = () => {
     <div className="w-11/12 mx-auto mr-0">
       <Navbar></Navbar>
       <div className="mt-10 flex">
-        <section className="w-3/4  shadow-2xl p-10 border rounded-3xl">
+        <section className="w-3/4  shadow-2xl p-10  rounded-3xl">
           <div className="grid grid-cols-[1fr_3fr]">
             <Leftbar className="" />
             <Outlet className=""></Outlet>
