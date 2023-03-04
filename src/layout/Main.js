@@ -8,19 +8,21 @@ import './Main.css';
 
 const Main = () => {
   return (
-    <div className="w-11/12 mx-auto mr-0">
-      <Navbar></Navbar>
-      <div className="mt-10 flex">
-        <section className="w-3/4  shadow-2xl p-10  rounded-3xl">
-          <div className="grid grid-cols-[1fr_3fr]">
-            <Leftbar className="" />
-            <Outlet className=""></Outlet>
-          </div>
-        </section>
-        <Rightbar />
+    <>
+      <div className="w-11/12 mx-auto mr-0 mb-10">
+        <Navbar></Navbar>
+        <div className="mt-10 flex">
+          <section className="w-3/4  shadow-2xl p-10  rounded-3xl">
+            <div className="grid grid-cols-[1fr_3fr]">
+              <Leftbar className="" />
+              <Outlet className=""></Outlet>
+            </div>
+          </section>
+          <Rightbar />
+        </div>
       </div>
       <Footer></Footer>
-    </div>
+    </>
   );
 };
 

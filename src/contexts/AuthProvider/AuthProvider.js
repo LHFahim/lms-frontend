@@ -12,17 +12,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
   const [wallet, setWallet] = useState(false);
 
-  // useEffect(() => {
-  //   if (!user.user) {
-  //     setUser(prev => {
-  //       return {
-  //         ...prev,
-  //         userData,
-  //       };
-  //     });
-  //   }
-  // }, []);
-
   const authInfo = {
     user,
     setUser,

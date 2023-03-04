@@ -206,7 +206,7 @@ const BookDetails = book => {
               return (
                 <div
                   key={el.id}
-                  className="border-l-4 py-3 grid grid-cols-[4fr_1fr] bg-aqua"
+                  className="border-l-4 py-3 grid grid-cols-[4fr_1fr] bg-aqua mb-5"
                 >
                   <div className="pl-5 flex flex-col items-start justify-between ">
                     <h1>{el.comment}</h1>

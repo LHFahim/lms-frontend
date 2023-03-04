@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useContext } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import AcceptReturnBook from '../../components/AcceptReturnBook/AcceptReturnBook';
+import AddBook from '../../components/AddBook/AddBook';
 import BookDetails from '../../components/BookDetails/BookDetails';
 
 import Books from '../../components/Books/Books';
@@ -24,6 +26,22 @@ export const routes = createBrowserRouter([
     path: '/register',
     element: <Register />,
   },
+  {
+    path: `add-book`,
+    element: (
+      <ProtectedRoutes>
+        <AddBook />,
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: `accept-return-book`,
+    element: (
+      <ProtectedRoutes>
+        <AcceptReturnBook />,
+      </ProtectedRoutes>
+    ),
+  },
 
   {
     path: '/',
@@ -32,8 +50,6 @@ export const routes = createBrowserRouter([
       {
         path: '/home',
         loader: async () => {
-          // const user = JSON.parse(localStorage.getItem('user'));
-
           return await fetch(`http://localhost:5000/api/v1/books`, {
             method: 'GET',
             headers: { Authorization: user?.accessToken },
