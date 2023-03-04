@@ -1,17 +1,15 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const BookDetails = book => {
   const { user } = useContext(AuthContext);
 
   let bookData = useLoaderData();
-
-  const [isBorrowed, setIsBorrowed] = useState(false);
-
   bookData = bookData.data;
-
   const {
     author,
     title,
@@ -25,45 +23,63 @@ const BookDetails = book => {
     discussion,
   } = bookData;
 
+  const [isBorrowed, setIsBorrowed] = useState(false);
+
+  const borrowedToast = () =>
+    toast('You have borrowed this book succesfully!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  const failedBorrowedToast = () =>
+    toast('You have already borrowed this book!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
   const handleBorrowBook = async id => {
-    const response = await axios.patch(
-      `http://localhost:5000/api/v1/books/${id}/borrow`,
-      {},
-      { headers: { Authorization: user.user.accessToken } }
-    );
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/books/${id}/borrow`,
+        {},
+        { headers: { Authorization: user.user.accessToken } }
+      );
 
-    if (response.data.success) {
-      let tempBorrowedBook = JSON.parse(localStorage.getItem('borrowedBook'));
+      if (response.data.success) {
+        borrowedToast();
+        let tempBorrowedBook = JSON.parse(localStorage.getItem('borrowedBook'));
 
-      if (!tempBorrowedBook) {
-        const tempArray = [id];
-        tempBorrowedBook = tempArray;
+        if (!tempBorrowedBook) {
+          const tempArray = [id];
+          tempBorrowedBook = tempArray;
 
-        localStorage.setItem('borrowedBook', JSON.stringify(tempBorrowedBook));
-        setIsBorrowed(true);
-      } else {
-        tempBorrowedBook.push(id);
-        localStorage.setItem('borrowedBook', JSON.stringify(tempBorrowedBook));
+          localStorage.setItem(
+            'borrowedBook',
+            JSON.stringify(tempBorrowedBook)
+          );
+          setIsBorrowed(true);
+        } else {
+          tempBorrowedBook.push(id);
+          localStorage.setItem(
+            'borrowedBook',
+            JSON.stringify(tempBorrowedBook)
+          );
+        }
       }
-    }
-  };
-
-  const handleReturnBook = async id => {
-    const response = await axios.patch(
-      `http://localhost:5000/api/v1/books/${id}/return`,
-      {},
-      { headers: { Authorization: user.user.accessToken } }
-    );
-
-    if (response.data.success) {
-      let tempBorrowedBook = JSON.parse(localStorage.getItem('borrowedBook'));
-
-      if (tempBorrowedBook) {
-        const data = tempBorrowedBook.filter(d => d !== id);
-
-        localStorage.setItem('borrowedBook', JSON.stringify(data));
-        setIsBorrowed(false);
-      }
+    } catch (error) {
+      console.log(error);
+      failedBorrowedToast();
     }
   };
 
@@ -157,21 +173,12 @@ const BookDetails = book => {
                 <h2>Available: {quantity}</h2>
               </div>
 
-              {isBorrowed ? (
-                <button
-                  onClick={() => handleReturnBook(id)}
-                  className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
-                >
-                  Return Book
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleBorrowBook(id)}
-                  className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
-                >
-                  Borrow Book
-                </button>
-              )}
+              <button
+                onClick={() => handleBorrowBook(id)}
+                className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
+              >
+                Borrow Book
+              </button>
             </div>
           </div>
         </div>
@@ -237,6 +244,19 @@ const BookDetails = book => {
         </div>
       </section>
       {/* comments section ends */}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
