@@ -26,6 +26,14 @@ const Footer = () => {
               </Link>
             </li>
             <li>
+              <Link
+                to={`approve-borrow-request`}
+                className="hover:text-orange-500"
+              >
+                Approve request
+              </Link>
+            </li>
+            <li>
               <Link to={`accept-return-book`} className="hover:text-orange-500">
                 Accept return
               </Link>

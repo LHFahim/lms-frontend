@@ -26,7 +26,7 @@ const BookDetails = book => {
   const [isBorrowed, setIsBorrowed] = useState(false);
 
   const borrowedToast = () =>
-    toast('You have borrowed this book succesfully!', {
+    toast('You have requested to borrow this book succesfully!', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -50,10 +50,14 @@ const BookDetails = book => {
 
   const handleBorrowBook = async id => {
     try {
-      const response = await axios.patch(
-        `http://localhost:5000/api/v1/books/${id}/borrow`,
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/borrow-request-books/${id}/request-to-borrow`,
         {},
         { headers: { Authorization: user.user.accessToken } }
+      );
+      console.log(
+        '🚀 ~ file: BookDetails.js:58 ~ handleBorrowBook ~ response:',
+        response
       );
 
       if (response.data.success) {
@@ -177,7 +181,7 @@ const BookDetails = book => {
                 onClick={() => handleBorrowBook(id)}
                 className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
               >
-                Borrow Book
+                Request this book
               </button>
             </div>
           </div>

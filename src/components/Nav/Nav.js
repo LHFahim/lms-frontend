@@ -18,17 +18,26 @@ const Nav = () => {
       <div className="">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={`/home`} className="text-lg">
+            <Link
+              to={`/home`}
+              className="text-lg hover:underline decoration-orange-500"
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to={`/borrowed-books`} className="text-lg">
+            <Link
+              to={`/borrowed-books`}
+              className="text-lg hover:underline decoration-orange-500"
+            >
               Borrowed Book
             </Link>
           </li>
           <li>
-            <button onClick={handleLogout} className="text-lg">
+            <button
+              onClick={handleLogout}
+              className="text-lg hover:underline decoration-orange-500"
+            >
               Logout
             </button>
           </li>

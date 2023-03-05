@@ -7,9 +7,9 @@ const Navbar = () => {
   return (
     <main className="grid grid-cols-[2fr,3fr] items-center">
       <section className="">
-        <header className="w-4/12 mx-auto bg-zinc-800">
+        <header className="w-10/12 mx-auto bg-aqua">
           <div className="flex justify-center mt-10 py-5 shadow-2xl">
-            <h1 className="text-3xl  font-black">
+            <h1 className="text-2xl font-black ">
               Online Library Management System
             </h1>
           </div>

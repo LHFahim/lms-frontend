@@ -12,7 +12,6 @@ const AcceptReturn = ({ book }) => {
   const userId = book.borrower.id;
 
   const handleAcceptReturn = async (bookId, userId) => {
-    console.log(bookId, userId);
     try {
       const response = await axios.patch(
         `http://localhost:5000/api/v1/admin-borrow-books/${bookId}/${userId}/accept`,

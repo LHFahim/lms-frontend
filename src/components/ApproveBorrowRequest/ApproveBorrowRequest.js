@@ -1,44 +1,47 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import AcceptReturn from '../AcceptReturn/AcceptReturn';
-import Navbar from '../Navbar/Navbar';
+import ApproveRequest from '../ApproveRequest/ApproveRequest';
 
-const AcceptReturnBook = () => {
+const ApproveBorrowRequest = () => {
   const { user } = useContext(AuthContext);
   const isAdmin = user.user.user.panelType;
 
-  const [borrowedBooks, setBorrowedBooks] = useState([]);
+  const [borrowRequests, setBorrowRequests] = useState([]);
 
-  const fetchBorrowedBooks = async () => {
+  const fetchBorrowRequests = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/admin-borrow-books`,
+        `http://localhost:5000/api/v1/borrow-request-books`,
         {
           headers: {
-            'Content-Type': 'application/json',
             Authorization: user.user.accessToken,
           },
         }
       );
 
       if (response.data.success) {
-        setBorrowedBooks(response.data.data);
+        setBorrowRequests(response.data.data);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  fetchBorrowedBooks();
+  fetchBorrowRequests();
+
+  // console.log(borrowRequests);
 
   return (
     <main>
-      <Navbar />
       {isAdmin === 'ADMIN' ? (
         <div className="w-6/12 mx-auto shadow-2xl">
-          {borrowedBooks.map(book => (
-            <AcceptReturn key={book.id} book={book}></AcceptReturn>
+          {borrowRequests.map(request => (
+            <ApproveRequest
+              key={request.id}
+              book={request.book}
+              requester={request.requester}
+            ></ApproveRequest>
           ))}
         </div>
       ) : (
@@ -52,4 +55,4 @@ const AcceptReturnBook = () => {
   );
 };
 
-export default AcceptReturnBook;
+export default ApproveBorrowRequest;
