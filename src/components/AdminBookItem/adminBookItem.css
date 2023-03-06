@@ -1,0 +1,20 @@
+/* table,
+th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  border: none;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+} */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}

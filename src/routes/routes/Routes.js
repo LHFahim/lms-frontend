@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import AcceptReturnBook from '../../components/AcceptReturnBook/AcceptReturnBook';
 import AddBook from '../../components/AddBook/AddBook';
+import AdminBooks from '../../components/AdminBooks/AdminBooks';
 import ApproveBorrowRequest from '../../components/ApproveBorrowRequest/ApproveBorrowRequest';
 import BookDetails from '../../components/BookDetails/BookDetails';
 
@@ -40,6 +41,14 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AcceptReturnBook />,
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: `books`,
+    element: (
+      <ProtectedRoutes>
+        <AdminBooks />
       </ProtectedRoutes>
     ),
   },

@@ -21,6 +21,11 @@ const Footer = () => {
           <h1>Administrator section</h1>
           <ul>
             <li>
+              <Link to={`books`} className="hover:text-orange-500">
+                Books
+              </Link>
+            </li>
+            <li>
               <Link to={`add-book`} className="hover:text-orange-500">
                 Add book
               </Link>
