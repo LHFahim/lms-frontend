@@ -48,16 +48,36 @@ const BookDetails = book => {
       theme: 'light',
     });
 
+  const waitingListToast = () =>
+    toast('You have successfully joined the waiting list!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+  const failedToJoinWaitingListToast = () =>
+    toast('You have already joined the waiting list!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
   const handleBorrowBook = async id => {
     try {
       const response = await axios.post(
         `http://localhost:5000/api/v1/borrow-request-books/${id}/request-to-borrow`,
         {},
         { headers: { Authorization: user.user.accessToken } }
-      );
-      console.log(
-        '🚀 ~ file: BookDetails.js:58 ~ handleBorrowBook ~ response:',
-        response
       );
 
       if (response.data.success) {
@@ -146,6 +166,25 @@ const BookDetails = book => {
     }
   };
 
+  // waitlist
+
+  const handleWaitlist = async id => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/waiting-list/${id}`,
+        {},
+        { headers: { Authorization: user.user.accessToken } }
+      );
+
+      if (response.data.success) {
+        waitingListToast();
+      }
+    } catch (error) {
+      failedToJoinWaitingListToast();
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {/* book detail section starts */}
@@ -176,6 +215,13 @@ const BookDetails = book => {
               <div>
                 <h2>Available: {quantity}</h2>
               </div>
+
+              <button
+                onClick={() => handleWaitlist(id)}
+                className="py-2 px-3 bg-zinc-800 rounded-lg text-white"
+              >
+                Join waiting list
+              </button>
 
               <button
                 onClick={() => handleBorrowBook(id)}
