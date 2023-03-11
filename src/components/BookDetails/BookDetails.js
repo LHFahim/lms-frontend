@@ -167,7 +167,6 @@ const BookDetails = book => {
   };
 
   // waitlist
-
   const handleWaitlist = async id => {
     try {
       const response = await axios.post(

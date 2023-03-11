@@ -18,32 +18,51 @@ const Footer = () => {
 
         {/* admin section begins */}
         <div>
-          <h1>Administrator section</h1>
-          <ul>
-            <li>
-              <Link to={`books`} className="hover:text-orange-500">
-                Books
-              </Link>
-            </li>
-            <li>
-              <Link to={`add-book`} className="hover:text-orange-500">
-                Add book
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`approve-borrow-request`}
-                className="hover:text-orange-500"
-              >
-                Approve request
-              </Link>
-            </li>
-            <li>
-              <Link to={`accept-return-book`} className="hover:text-orange-500">
-                Accept return
-              </Link>
-            </li>
-          </ul>
+          <h1 className="text-center mb-5 text-orange-500 font-black tracking-widest">
+            Administrator section
+          </h1>
+          <div className="flex space-x-20">
+            {/* first */}
+            <ul>
+              <li>
+                <Link to={`books`} className="hover:text-orange-500">
+                  Books
+                </Link>
+              </li>
+              <li>
+                <Link to={`add-book`} className="hover:text-orange-500">
+                  Add book
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`approve-borrow-request`}
+                  className="hover:text-orange-500"
+                >
+                  Approve request
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`accept-return-book`}
+                  className="hover:text-orange-500"
+                >
+                  Accept return
+                </Link>
+              </li>
+            </ul>
+            {/* second */}
+            <ul>
+              <li>
+                <Link
+                  to={`profile/donated-books`}
+                  className="hover:text-orange-500"
+                >
+                  Donated books
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         {/* admin section ends */}
       </section>

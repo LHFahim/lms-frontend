@@ -34,6 +34,14 @@ const Nav = () => {
             </Link>
           </li>
           <li>
+            <Link
+              to={`/profile`}
+              className="text-lg hover:underline decoration-orange-500"
+            >
+              My Profile
+            </Link>
+          </li>
+          <li>
             <button
               onClick={handleLogout}
               className="text-lg hover:underline decoration-orange-500"
