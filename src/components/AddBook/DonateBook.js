@@ -21,7 +21,7 @@ const DonateBook = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/donate-book`,
+        `http://localhost:5000/api/v1/donate-book/donate`,
         {
           title,
           author,

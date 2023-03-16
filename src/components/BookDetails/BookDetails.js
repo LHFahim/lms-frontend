@@ -37,7 +37,7 @@ const BookDetails = book => {
       theme: 'light',
     });
   const failedBorrowedToast = () =>
-    toast('You have already borrowed this book!', {
+    toast('You have already borrowed this book or exceeded limit.', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
