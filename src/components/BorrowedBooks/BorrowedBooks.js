@@ -10,6 +10,7 @@ const BorrowedBooks = () => {
   let borrowdBookData = useLoaderData();
 
   const [donatedBooks, setDonatedBooks] = useState([]);
+  const [returnedBooks, setReturnedBooks] = useState([]);
 
   if (borrowdBookData.success) {
     borrowdBookData = borrowdBookData?.data;
@@ -45,6 +46,25 @@ const BorrowedBooks = () => {
   };
   getDonatedBooks();
 
+  // returned books
+  const getReturnedBooks = async () => {
+    try {
+      const result = await axios.get(
+        `http://localhost:5000/api/v1/borrow-books/returned-books`,
+        { headers: { Authorization: user.user.accessToken } }
+      );
+
+      if (result.data.success) {
+        setReturnedBooks(result.data.data);
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+  getReturnedBooks();
+
+  console.log(returnedBooks);
+
   return (
     <main>
       <section className="grid grid-cols-3 gap-5">
@@ -75,6 +95,16 @@ const BorrowedBooks = () => {
         <div className="grid grid-cols-3 gap-5">
           {donatedBooks.map(book => {
             return <DBook key={book.id} book={book}></DBook>;
+          })}
+        </div>
+      </section>
+      <section className="mt-16 ">
+        <h1 className="text-2xl font-black uppercase text-center">
+          These are the books you returned
+        </h1>
+        <div className="grid grid-cols-3 gap-5">
+          {returnedBooks.map(item => {
+            return <DBook key={item.bookId.id} book={item.bookId}></DBook>;
           })}
         </div>
       </section>
