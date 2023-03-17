@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Navbar from '../../Navbar/Navbar';
 
@@ -12,11 +14,6 @@ const AdminModifyBook = () => {
   if (result.success) {
     result = result.data;
   }
-
-  console.log(
-    '🚀 ~ file: AdminModifyBook.js:6 ~ AdminModifyBook ~ result:',
-    result
-  );
 
   const { title, author, quantity, image, description, shelf, tags, id } =
     result;
@@ -55,14 +52,26 @@ const AdminModifyBook = () => {
           },
         }
       );
-      console.log(
-        '🚀 ~ file: AddBook.js:50 ~ handleAddBook ~ response:',
-        response
-      );
+
+      if (response.data.success) {
+        modifySuccessToast();
+      }
     } catch (error) {
       console.log(error.response);
     }
   };
+
+  const modifySuccessToast = () =>
+    toast('Book has been modified successfully', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
 
   return (
     <div>
@@ -192,6 +201,18 @@ const AdminModifyBook = () => {
           </>
         )}
       </main>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
