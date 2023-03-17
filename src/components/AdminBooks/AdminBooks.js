@@ -70,6 +70,7 @@ const AdminBooks = () => {
             <h1>Shelf</h1>
             <h1>Available</h1>
             <h1>Created at</h1>
+            <h1>Actions</h1>
             {/* <h1>Updated at</h1> */}
           </div>
           {books.map(book => (

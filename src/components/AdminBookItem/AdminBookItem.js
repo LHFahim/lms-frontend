@@ -1,7 +1,11 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import './adminBookItem.css';
 
 const AdminBookItem = ({ book }) => {
+  const { user } = useContext(AuthContext);
+
   const {
     title,
     author,
@@ -14,6 +18,7 @@ const AdminBookItem = ({ book }) => {
     isAvailable,
     createdAt,
     updatedAt,
+    id,
   } = book;
 
   const tempDate = new Date(createdAt);
@@ -24,6 +29,21 @@ const AdminBookItem = ({ book }) => {
     (tempDate.getMonth() + 1) +
     '-' +
     tempDate.getDate();
+
+  // handle book delete
+
+  const handleBookDelete = async id => {
+    console.log('id', id);
+    try {
+      const res = axios.delete(`http://localhost:5000/api/v1/admin-books/a`, {
+        headers: {
+          Authorization: user.user.accessToken,
+        },
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   return (
     <main>
@@ -42,6 +62,13 @@ const AdminBookItem = ({ book }) => {
 
               <h1>{finalDate}</h1>
               {/* <h1>{updatedAt}</h1> */}
+              <div>
+                {' '}
+                <button onClick={() => handleBookDelete(id)}>
+                  Delete
+                </button>{' '}
+                <button>Modify</button>
+              </div>
             </div>
           </main>
         </div>

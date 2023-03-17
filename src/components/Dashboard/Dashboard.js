@@ -31,25 +31,25 @@ const Dashboard = () => {
     tempDate.getDate();
 
   // extend borrow limit
-  const extendBorrowLimit = async () => {
-    try {
-      const response = await axios.patch(
-        `http://localhost:5000/api/v1/borrow-books/extend-limit`,
-        {},
-        {
-          headers: {
-            Authorization: user.user.accessToken,
-          },
-        }
-      );
+  // const extendBorrowLimit = async () => {
+  //   try {
+  //     const response = await axios.patch(
+  //       `http://localhost:5000/api/v1/borrow-books/extend-limit`,
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: user.user.accessToken,
+  //         },
+  //       }
+  //     );
 
-      limitExtendToast();
-    } catch (error) {
-      console.log(error.response);
-      // setToastMessage(error.response.data.message);
-      limitErrorToast();
-    }
-  };
+  //     limitExtendToast();
+  //   } catch (error) {
+  //     console.log(error.response);
+  //     // setToastMessage(error.response.data.message);
+  //     limitErrorToast();
+  //   }
+  // };
 
   // toasts
   const limitErrorToast = () =>
@@ -103,11 +103,14 @@ const Dashboard = () => {
           </p>
         </div>
         <div>
-          <h1>Your default borrow limit is 3.</h1>
-          <h1> If you want to increase borrow limit, click</h1>
+          <h1>
+            Your default borrow limit is 3. The system will automatically
+            upgrade your borrow limit if your balance points reach 50!
+          </h1>
+          {/* <h1> If you want to increase borrow limit, click</h1>
           <button className="bg-aqua py-2 px-3" onClick={extendBorrowLimit}>
             here
-          </button>
+          </button> */}
         </div>
       </section>
 
