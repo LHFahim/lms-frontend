@@ -4,8 +4,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import AcceptReturnBook from '../../components/AcceptReturnBook/AcceptReturnBook';
 import AddBook from '../../components/AddBook/AddBook';
 import DonateBook from '../../components/AddBook/DonateBook';
+import AdminBooks from '../../components/Admin/AdminBooks/AdminBooks';
 import AdminDonatePage from '../../components/Admin/AdminDonatePage/AdminDonatePage';
-import AdminBooks from '../../components/AdminBooks/AdminBooks';
+import AdminModifyBook from '../../components/Admin/AdminModifyBook/AdminModifyBook';
 import ApproveBorrowRequest from '../../components/ApproveBorrowRequest/ApproveBorrowRequest';
 import BookDetails from '../../components/BookDetails/BookDetails';
 
@@ -53,6 +54,23 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminBooks />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: '/admin-books/:id',
+    loader: async ({ params }) => {
+      return await fetch(
+        `http://localhost:5000/api/v1/admin-books/${params.id}`,
+        {
+          method: 'GET',
+          headers: { Authorization: user?.accessToken },
+        }
+      );
+    },
+    element: (
+      <ProtectedRoutes>
+        <AdminModifyBook />
       </ProtectedRoutes>
     ),
   },

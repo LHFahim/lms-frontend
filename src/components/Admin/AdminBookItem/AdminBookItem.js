@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import './adminBookItem.css';
 
 const AdminBookItem = ({ book }) => {
@@ -31,7 +32,6 @@ const AdminBookItem = ({ book }) => {
     tempDate.getDate();
 
   // handle book delete
-
   const handleBookDelete = async id => {
     console.log('id', id);
     try {
@@ -67,7 +67,7 @@ const AdminBookItem = ({ book }) => {
                 <button onClick={() => handleBookDelete(id)}>
                   Delete
                 </button>{' '}
-                <button>Modify</button>
+                <Link to={`/admin-books/${id}`}>Modify</Link>
               </div>
             </div>
           </main>
