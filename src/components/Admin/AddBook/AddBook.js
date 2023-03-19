@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import Navbar from '../Navbar/Navbar';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import Navbar from '../../Navbar/Navbar';
 
 const AddBook = () => {
   const { user } = useContext(AuthContext);

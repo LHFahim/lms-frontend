@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import Navbar from '../Navbar/Navbar';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const DonateBook = () => {
   const { user } = useContext(AuthContext);
@@ -46,7 +45,7 @@ const DonateBook = () => {
         <section className="add-book m-10">
           <header>
             <div className="flex justify-center py-10">
-              <h1 className="text-2xl font-bold">Add a new book</h1>
+              <h1 className="text-2xl font-bold">Donate a book</h1>
             </div>
           </header>
           <main>

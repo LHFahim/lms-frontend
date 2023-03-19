@@ -58,6 +58,14 @@ const Footer = () => {
                   to={`profile/donated-books`}
                   className="hover:text-orange-500"
                 >
+                  Approve donated books
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`donated-books-list`}
+                  className="hover:text-orange-500"
+                >
                   Donated books
                 </Link>
               </li>

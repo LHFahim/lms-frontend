@@ -1,47 +1,44 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import ApproveRequest from '../ApproveRequest/ApproveRequest';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import AcceptReturn from '../AcceptReturn/AcceptReturn';
+import Navbar from '../../Navbar/Navbar';
 
-const ApproveBorrowRequest = () => {
+const AcceptReturnBook = () => {
   const { user } = useContext(AuthContext);
   const isAdmin = user.user.user.panelType;
 
-  const [borrowRequests, setBorrowRequests] = useState([]);
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
 
-  const fetchBorrowRequests = async () => {
+  const fetchBorrowedBooks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/borrow-request-books`,
+        `http://localhost:5000/api/v1/admin-borrow-books`,
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: user.user.accessToken,
           },
         }
       );
 
       if (response.data.success) {
-        setBorrowRequests(response.data.data);
+        setBorrowedBooks(response.data.data);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  fetchBorrowRequests();
-
-  // console.log(borrowRequests);
+  fetchBorrowedBooks();
 
   return (
     <main>
+      <Navbar />
       {isAdmin === 'ADMIN' ? (
         <div className="w-6/12 mx-auto shadow-2xl">
-          {borrowRequests.map(request => (
-            <ApproveRequest
-              key={request.id}
-              book={request.book}
-              requester={request.requester}
-            ></ApproveRequest>
+          {borrowedBooks.map(book => (
+            <AcceptReturn key={book.id} book={book}></AcceptReturn>
           ))}
         </div>
       ) : (
@@ -55,4 +52,4 @@ const ApproveBorrowRequest = () => {
   );
 };
 
-export default ApproveBorrowRequest;
+export default AcceptReturnBook;

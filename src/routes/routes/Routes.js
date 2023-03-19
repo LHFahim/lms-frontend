@@ -1,13 +1,14 @@
-import axios from 'axios';
-import { useContext } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import AcceptReturnBook from '../../components/AcceptReturnBook/AcceptReturnBook';
-import AddBook from '../../components/AddBook/AddBook';
-import DonateBook from '../../components/AddBook/DonateBook';
+import AcceptReturnBook from '../../components/Admin/AcceptReturnBook/AcceptReturnBook';
+import AddBook from '../../components/Admin/AddBook/AddBook';
+import DonateBook from '../../components/Admin/AddBook/DonateBook';
+
+import ApproveBorrowRequest from '../../components/Admin/ApproveBorrowRequest/ApproveBorrowRequest';
+
 import AdminBooks from '../../components/Admin/AdminBooks/AdminBooks';
 import AdminDonatePage from '../../components/Admin/AdminDonatePage/AdminDonatePage';
 import AdminModifyBook from '../../components/Admin/AdminModifyBook/AdminModifyBook';
-import ApproveBorrowRequest from '../../components/ApproveBorrowRequest/ApproveBorrowRequest';
+
 import BookDetails from '../../components/BookDetails/BookDetails';
 
 import Books from '../../components/Books/Books';
@@ -16,7 +17,7 @@ import Dashboard from '../../components/Dashboard/Dashboard';
 import Error from '../../components/Error/Error';
 import FilteredResults from '../../components/FilteredResults/FilteredResults';
 
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
 import Main from '../../layout/Main';
 import WithoutSidebar from '../../layout/WithoutSidebar';
 import Login from '../../pages/Login/Login';
@@ -175,6 +176,14 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <AdminDonatePage />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: `donated-books-list`,
+        element: (
+          <ProtectedRoutes>
+            <AdminListDonatedBooks />
           </ProtectedRoutes>
         ),
       },
