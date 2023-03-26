@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
+import Pdf from 'react-to-pdf';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Navbar from '../../Navbar/Navbar';
 import AdminBookItem from '../AdminBookItem/AdminBookItem';
@@ -38,8 +39,13 @@ const AdminBooks = () => {
     }
   };
 
+  const ref = React.createRef();
+
   return (
     <main>
+      <Pdf targetRef={ref} filename="books.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate PDF</button>}
+      </Pdf>
       <Navbar />
       <section className="p-5 ">
         <div>
@@ -59,7 +65,7 @@ const AdminBooks = () => {
         </div>
       </section>
       {isAdmin === 'ADMIN' ? (
-        <div className="shadow-2xl ">
+        <div ref={ref} className="shadow-2xl ">
           <div className="wrapper p-5 font-black text-2xl">
             <h1>Image</h1>
             <h1>Title</h1>

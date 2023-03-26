@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import Pdf from 'react-to-pdf';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import AdminDonateBook from '../AdminDonateBook/AdminDonateBook';
 import AdminListDonatedBooksCard from './AdminListDonatedBooksCard';
@@ -53,8 +54,13 @@ const AdminListDonatedBooks = () => {
     setSortByValue(e.target.value);
   };
 
+  const ref = React.createRef();
+
   return (
     <main>
+      <Pdf targetRef={ref} filename="donated-books.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+      </Pdf>
       {isAdmin === 'ADMIN' ? (
         <div>
           <section className=" mx-auto mb-10 ">
@@ -98,7 +104,7 @@ const AdminListDonatedBooks = () => {
               </div>
             </form>
           </section>
-          <main className="">
+          <main ref={ref} className="">
             <div className="wrapper p-5 font-black text-2xl">
               <h1>Image</h1>
               <h1>Title</h1>

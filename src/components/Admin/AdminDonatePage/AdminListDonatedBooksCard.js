@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
+
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AdminListDonatedBooksCard = ({ item }) => {
@@ -41,19 +42,3 @@ const AdminListDonatedBooksCard = ({ item }) => {
 };
 
 export default AdminListDonatedBooksCard;
-
-// <main className="space-y-5">
-//       <div className="space-y-5">
-//         <section>
-//           <img src={image} alt="" />
-//         </section>
-//         <section className="space-y-3">
-//           <div>
-//             <h1>{title}</h1>
-//             <h1>{tags}</h1>
-//             <h1>{author}</h1>
-//           </div>
-//           <h1>Donated by: {donatedBy.email}</h1>
-//         </section>
-//       </div>
-//     </main>
