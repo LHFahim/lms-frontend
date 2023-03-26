@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import AdminDonateBook from '../AdminDonateBook/AdminDonateBook';
+import AdminListDonatedBooksCard from './AdminListDonatedBooksCard';
 
 const AdminListDonatedBooks = () => {
   const { user } = useContext(AuthContext);
@@ -97,9 +98,21 @@ const AdminListDonatedBooks = () => {
               </div>
             </form>
           </section>
-          <main className="grid grid-cols-4">
+          <main className="">
+            <div className="wrapper p-5 font-black text-2xl">
+              <h1>Image</h1>
+              <h1>Title</h1>
+              <h1>Author</h1>
+              <h1>Description</h1>
+              <h1>Tags</h1>
+              <h1>Accepted</h1>
+              <h1>Created at</h1>
+            </div>
             {donatedBooks.map(item => (
-              <AdminDonateBook key={item.id} item={item}></AdminDonateBook>
+              <AdminListDonatedBooksCard
+                key={item.id}
+                item={item}
+              ></AdminListDonatedBooksCard>
             ))}
           </main>
         </div>
