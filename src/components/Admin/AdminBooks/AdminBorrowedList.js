@@ -1,30 +1,19 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import Pdf from 'react-to-pdf';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Navbar from '../../Navbar/Navbar';
-import AdminBookItem from '../AdminBookItem/AdminBookItem';
-import '../AdminBookItem/adminBookItem.css';
+import AdminBorrowBookItem from '../AdminBookItem/AdminBorrowBookItem';
 
-const AdminBooks = () => {
+const AdminBorrowedList = () => {
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
   const { user } = useContext(AuthContext);
   const isAdmin = user.user.user.panelType;
-
-  const [books, setBooks] = useState([]);
-  const date = new Date().getDate();
-
-  const [value, setValue] = useState();
-
-  // query
-  const handleQueryChange = async e => {
-    setValue(e.target.value);
-  };
 
   const handleQuery = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/admin-books?sortBy=${value}`,
+        `http://localhost:5000/api/v1/admin-borrow-books`,
         {
           headers: {
             Authorization: user.user.accessToken,
@@ -33,12 +22,14 @@ const AdminBooks = () => {
       );
 
       if (response.data.success) {
-        setBooks(response.data.data.data);
+        setBorrowedBooks(response.data.data);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  handleQuery();
 
   const ref = React.createRef();
 
@@ -48,7 +39,7 @@ const AdminBooks = () => {
         {({ toPdf }) => <button onClick={toPdf}>Generate PDF</button>}
       </Pdf>
       <Navbar />
-      <section className="p-5 ">
+      {/* <section className="p-5 ">
         <div>
           <label htmlFor="query">Choose a query: </label>
           <select
@@ -69,7 +60,7 @@ const AdminBooks = () => {
             See borrowed book list from <Link to={`borrowed-list`}>here</Link>{' '}
           </h1>
         </div>
-      </section>
+      </section> */}
       {isAdmin === 'ADMIN' ? (
         <div ref={ref} className="shadow-2xl ">
           <div className="wrapper p-5 font-black text-2xl">
@@ -78,15 +69,17 @@ const AdminBooks = () => {
             <h1>Author</h1>
             <h1>Description</h1>
             <h1>Tags</h1>
-            <h1>Quantity</h1>
-            <h1>Shelf</h1>
-            <h1>Available</h1>
-            <h1>Created at</h1>
-            <h1>Actions</h1>
+            <h1>Borrower</h1>
+            <h1>Issued on</h1>
+            <h1>Return on</h1>
+
             {/* <h1>Updated at</h1> */}
           </div>
-          {books.map(book => (
-            <AdminBookItem key={book.id} book={book}></AdminBookItem>
+          {borrowedBooks.map(book => (
+            <AdminBorrowBookItem
+              key={book.id}
+              book={book}
+            ></AdminBorrowBookItem>
           ))}
         </div>
       ) : (
@@ -100,4 +93,4 @@ const AdminBooks = () => {
   );
 };
 
-export default AdminBooks;
+export default AdminBorrowedList;

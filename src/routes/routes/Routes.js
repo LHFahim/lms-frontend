@@ -17,6 +17,7 @@ import Dashboard from '../../components/Dashboard/Dashboard';
 import Error from '../../components/Error/Error';
 import FilteredResults from '../../components/FilteredResults/FilteredResults';
 
+import AdminBorrowedList from '../../components/Admin/AdminBooks/AdminBorrowedList';
 import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
 import Main from '../../layout/Main';
 import WithoutSidebar from '../../layout/WithoutSidebar';
@@ -55,6 +56,14 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminBooks />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: `books/borrowed-list`,
+    element: (
+      <ProtectedRoutes>
+        <AdminBorrowedList />
       </ProtectedRoutes>
     ),
   },

@@ -17,8 +17,6 @@ const AdminListDonatedBooks = () => {
     const form = event.target;
     const search = form.search.value;
 
-    console.log(value);
-
     try {
       const response = await axios.get(
         `http://localhost:5000/api/v1/donate-book/list?page=1&pageSize=20&search=${search}&sortBy=createdAt&sort=${value}`,
@@ -38,7 +36,7 @@ const AdminListDonatedBooks = () => {
   };
   // fetchDonatedBooks();
 
-  // console.log(donatedBooks);
+  console.log('donatedBooks ===> ', donatedBooks);
 
   const { author, title, description, image, tags } = donatedBooks;
 
@@ -113,6 +111,7 @@ const AdminListDonatedBooks = () => {
               <h1>Tags</h1>
               <h1>Accepted</h1>
               <h1>Created at</h1>
+              <h1>Donated by</h1>
             </div>
             {donatedBooks.map(item => (
               <AdminListDonatedBooksCard

@@ -4,8 +4,16 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AdminListDonatedBooksCard = ({ item }) => {
-  const { author, title, description, image, tags, isAccepted, createdAt } =
-    item;
+  const {
+    author,
+    title,
+    description,
+    image,
+    tags,
+    isAccepted,
+    createdAt,
+    donatedBy,
+  } = item;
 
   const { user } = useContext(AuthContext);
 
@@ -33,6 +41,7 @@ const AdminListDonatedBooksCard = ({ item }) => {
               <h1>{isAccepted ? <p>Yes</p> : <p>No</p>}</h1>
 
               <h1>{finalDate}</h1>
+              <h1>{donatedBy.email}</h1>
             </div>
           </main>
         </div>
