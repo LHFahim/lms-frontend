@@ -7,6 +7,10 @@ const AddBook = () => {
   const { user } = useContext(AuthContext);
   const isAdmin = user.user.user.panelType;
 
+  const [file, setFile] = useState({
+    file: null,
+  });
+
   const handleAddBook = async event => {
     event.preventDefault();
 
@@ -45,6 +49,41 @@ const AddBook = () => {
         '🚀 ~ file: AddBook.js:50 ~ handleAddBook ~ response:',
         response
       );
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const handleFile = async event => {
+    event.preventDefault();
+    console.log(event.target.files[0], '$$$$');
+    const jsonFile = event.target.files[0];
+
+    setFile(jsonFile);
+
+    // const reader = new FileReader();
+    // reader.readAsDataURL(jsonFile);
+  };
+
+  const handleFileUpload = async event => {
+    // event.preventDefault();
+    console.log('abc', file);
+
+    const formData = new FormData();
+    formData.append('assets', file);
+
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `http://localhost:5000/api/v1/admin-books/upload`,
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: user.user.accessToken,
+        },
+      });
+
+      console.log('response ===> ', response);
     } catch (error) {
       console.log(error.response);
     }
@@ -180,6 +219,40 @@ const AddBook = () => {
                 </div>
               </form>
             </main>
+
+            <section className="w-4/6">
+              {/* The button to open modal */}
+              <label
+                htmlFor="my-modal-4"
+                className="uppercase bg-zinc-800 text-white py-2 text-xl w-2/12 rounded-md"
+              >
+                Upload JSON files
+              </label>
+
+              {/* Put this part before </body> tag */}
+              <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+              <label htmlFor="my-modal-4" className="modal cursor-pointer">
+                <label className="modal-box relative" htmlFor="">
+                  <form className="space-y-3">
+                    <div className="grid grid-cols-[1fr_2fr]">
+                      <label htmlFor="file">Select a JSON file</label>
+                      <input
+                        type="file"
+                        name="file"
+                        id="file"
+                        onChange={handleFile}
+                      />
+                      {/* <button type="button" onClick={() => handleFileUpload()}>
+                        Button
+                      </button> */}
+                    </div>
+                  </form>
+                  <button type="button" onClick={() => handleFileUpload()}>
+                    Button
+                  </button>
+                </label>
+              </label>
+            </section>
           </section>
         </div>
       ) : (
