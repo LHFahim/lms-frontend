@@ -35,6 +35,14 @@ const Nav = () => {
           </li>
           <li>
             <Link
+              to={`/jobs`}
+              className="text-lg hover:underline decoration-orange-500"
+            >
+              Jobs
+            </Link>
+          </li>
+          <li>
+            <Link
               to={`/profile`}
               className="text-lg hover:underline decoration-orange-500"
             >

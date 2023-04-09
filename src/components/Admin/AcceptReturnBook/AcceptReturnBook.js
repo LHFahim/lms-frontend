@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import AcceptReturn from '../AcceptReturn/AcceptReturn';
 import Navbar from '../../Navbar/Navbar';
+import AcceptReturn from '../AcceptReturn/AcceptReturn';
 
 const AcceptReturnBook = () => {
   const { user } = useContext(AuthContext);
@@ -36,7 +36,7 @@ const AcceptReturnBook = () => {
     <main>
       <Navbar />
       {isAdmin === 'ADMIN' ? (
-        <div className="w-6/12 mx-auto shadow-2xl">
+        <div className="mt-5 w-10/12 mx-auto shadow-2xl space-y-5">
           {borrowedBooks.map(book => (
             <AcceptReturn key={book.id} book={book}></AcceptReturn>
           ))}

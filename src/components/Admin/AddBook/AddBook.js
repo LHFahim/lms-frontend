@@ -82,8 +82,6 @@ const AddBook = () => {
           Authorization: user.user.accessToken,
         },
       });
-
-      console.log('response ===> ', response);
     } catch (error) {
       console.log(error.response);
     }

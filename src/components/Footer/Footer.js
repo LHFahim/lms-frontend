@@ -69,6 +69,14 @@ const Footer = () => {
                   Donated books
                 </Link>
               </li>
+              <li>
+                <Link
+                  to={`/admin/job-requests`}
+                  className="hover:text-orange-500"
+                >
+                  Jobs
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

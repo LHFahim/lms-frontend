@@ -19,6 +19,8 @@ import FilteredResults from '../../components/FilteredResults/FilteredResults';
 
 import AdminBorrowedList from '../../components/Admin/AdminBooks/AdminBorrowedList';
 import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
+import AdminJobs from '../../components/Admin/AdminJobs/AdminJobs';
+import Jobs from '../../components/Jobs/Jobs';
 import Main from '../../layout/Main';
 import WithoutSidebar from '../../layout/WithoutSidebar';
 import Login from '../../pages/Login/Login';
@@ -81,6 +83,22 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminModifyBook />
+      </ProtectedRoutes>
+    ),
+  },
+
+  // job request for admin
+  {
+    path: '/admin/job-requests',
+    loader: async () => {
+      return await fetch(`http://localhost:5000/api/v1/admin-jobs/requests`, {
+        method: 'GET',
+        headers: { Authorization: user?.accessToken },
+      });
+    },
+    element: (
+      <ProtectedRoutes>
+        <AdminJobs />
       </ProtectedRoutes>
     ),
   },
@@ -148,6 +166,20 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <ApproveBorrowRequest />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: `jobs`,
+        loader: async () => {
+          return await fetch(`http://localhost:5000/api/v1/jobs`, {
+            method: 'GET',
+            headers: { Authorization: user?.accessToken },
+          });
+        },
+        element: (
+          <ProtectedRoutes>
+            <Jobs />
           </ProtectedRoutes>
         ),
       },
