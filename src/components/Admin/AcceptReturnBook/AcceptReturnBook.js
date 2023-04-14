@@ -32,13 +32,15 @@ const AcceptReturnBook = () => {
 
   fetchBorrowedBooks();
 
+  let index = 0;
+
   return (
     <main>
       <Navbar />
       {isAdmin === 'ADMIN' ? (
         <div className="mt-5 w-10/12 mx-auto shadow-2xl space-y-5">
           {borrowedBooks.map(book => (
-            <AcceptReturn key={book.id} book={book}></AcceptReturn>
+            <AcceptReturn key={index++} book={book}></AcceptReturn>
           ))}
         </div>
       ) : (

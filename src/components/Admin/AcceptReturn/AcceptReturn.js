@@ -5,11 +5,12 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AcceptReturn = ({ book }) => {
   const { user } = useContext(AuthContext);
+  // console.log(book);
 
-  const { title, author, image } = book.bookId;
+  const { title, author, image } = book.book;
   const { firstName, email, avatarURL } = book.borrower;
 
-  const bookId = book.bookId.id;
+  const bookId = book.book.id;
   const userId = book.borrower.id;
 
   const handleAcceptReturn = async (bookId, userId) => {
