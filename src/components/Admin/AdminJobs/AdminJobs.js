@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Navbar from '../../Navbar/Navbar';
 import AdminJob from './AdminJob';
@@ -38,29 +38,33 @@ const AdminJobs = () => {
       <Navbar />
 
       {isAdmin ? (
-        <section className="grid grid-cols-2 mt-10 ml-3">
-          <div>
-            <h1 className="uppercase font-black text-xl text-center">
-              Accept Job Requests
-            </h1>
-            <article className="grid grid-cols-2 p-5 ">
-              {jobRequest.map(jr => (
-                <AdminJob key={jr.id} jobRequest={jr}></AdminJob>
-              ))}
-            </article>
-          </div>
-          <div>
-            <h1 className="uppercase font-black text-xl text-center">
-              Mark jobs done
-            </h1>
-            <button onClick={fetchJobsRequestForCompletion}>Refresh</button>
+        <section className="mt-10 ">
+          <h1 className="inline ml-10">In order to create a job, </h1>
+          <Link to={`/admin/create-job`}>click here</Link>
+          <section className="grid grid-cols-2 mt-10 ml-3">
+            <div>
+              <h1 className="uppercase font-black text-xl text-center">
+                Accept Job Requests
+              </h1>
+              <article className="grid grid-cols-2 p-5 ">
+                {jobRequest.map(jr => (
+                  <AdminJob key={jr.id} jobRequest={jr}></AdminJob>
+                ))}
+              </article>
+            </div>
+            <div>
+              <h1 className="uppercase font-black text-xl text-center">
+                Mark jobs done
+              </h1>
+              <button onClick={fetchJobsRequestForCompletion}>Refresh</button>
 
-            <article className="grid grid-cols-2 p-5 ">
-              {completion.map(item => (
-                <Completion key={item.id} jobRequest={item}></Completion>
-              ))}
-            </article>
-          </div>
+              <article className="grid grid-cols-2 p-5 ">
+                {completion.map(item => (
+                  <Completion key={item.id} jobRequest={item}></Completion>
+                ))}
+              </article>
+            </div>
+          </section>
         </section>
       ) : (
         <>

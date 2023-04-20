@@ -45,10 +45,6 @@ const AddBook = () => {
           },
         }
       );
-      console.log(
-        '🚀 ~ file: AddBook.js:50 ~ handleAddBook ~ response:',
-        response
-      );
     } catch (error) {
       console.log(error.response);
     }

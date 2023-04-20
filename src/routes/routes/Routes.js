@@ -19,6 +19,7 @@ import FilteredResults from '../../components/FilteredResults/FilteredResults';
 
 import AdminBorrowedList from '../../components/Admin/AdminBooks/AdminBorrowedList';
 import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
+import AdminCreateJob from '../../components/Admin/AdminJobs/AdminCreateJob';
 import AdminJobs from '../../components/Admin/AdminJobs/AdminJobs';
 import Jobs from '../../components/Jobs/Jobs';
 import Main from '../../layout/Main';
@@ -99,6 +100,15 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminJobs />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: '/admin/create-job',
+
+    element: (
+      <ProtectedRoutes>
+        <AdminCreateJob />
       </ProtectedRoutes>
     ),
   },

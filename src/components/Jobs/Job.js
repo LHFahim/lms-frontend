@@ -30,8 +30,52 @@ const Job = ({ job }) => {
     }
   };
 
+  const handleWithdraw = async () => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/jobs/${id}/withdraw`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: user.user.accessToken,
+          },
+        }
+      );
+
+      if (response.data.success) withdrawnJobToast();
+    } catch (error) {
+      console.log(error.response);
+      withdrawnJobFailureToast();
+    }
+  };
+
   const jobApplyToast = () =>
     toast('You have applied for this job successfully!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+  const withdrawnJobToast = () =>
+    toast('You have withdrawn application from this job successfully!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+  const withdrawnJobFailureToast = () =>
+    toast('You did not apply for this job!', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -84,6 +128,12 @@ const Job = ({ job }) => {
               className="text-orange-500 font-black"
             >
               Apply
+            </button>
+            <button
+              onClick={() => handleWithdraw()}
+              className="text-orange-500 font-black"
+            >
+              Withdraw
             </button>
           </div>
         </div>
