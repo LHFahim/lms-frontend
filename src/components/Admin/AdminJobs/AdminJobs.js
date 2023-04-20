@@ -39,8 +39,14 @@ const AdminJobs = () => {
 
       {isAdmin ? (
         <section className="mt-10 ">
-          <h1 className="inline ml-10">In order to create a job, </h1>
-          <Link to={`/admin/create-job`}>click here</Link>
+          <div>
+            <h1 className="inline ml-10">In order to create a job, </h1>
+            <Link to={`/admin/create-job`}>click here</Link>
+          </div>
+          <div>
+            <h1 className="inline ml-10">In order to view all the jobs, </h1>
+            <Link to={`/admin/view-jobs`}>click here</Link>
+          </div>
           <section className="grid grid-cols-2 mt-10 ml-3">
             <div>
               <h1 className="uppercase font-black text-xl text-center">

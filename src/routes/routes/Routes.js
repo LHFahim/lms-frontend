@@ -21,6 +21,7 @@ import AdminBorrowedList from '../../components/Admin/AdminBooks/AdminBorrowedLi
 import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
 import AdminCreateJob from '../../components/Admin/AdminJobs/AdminCreateJob';
 import AdminJobs from '../../components/Admin/AdminJobs/AdminJobs';
+import AdminViewJobs from '../../components/Admin/AdminJobs/AdminViewJobs';
 import Jobs from '../../components/Jobs/Jobs';
 import Main from '../../layout/Main';
 import WithoutSidebar from '../../layout/WithoutSidebar';
@@ -109,6 +110,20 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminCreateJob />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: '/admin/view-jobs',
+    loader: async () => {
+      return await fetch(`http://localhost:5000/api/v1/admin-jobs`, {
+        method: 'GET',
+        headers: { Authorization: user?.accessToken },
+      });
+    },
+    element: (
+      <ProtectedRoutes>
+        <AdminViewJobs />
       </ProtectedRoutes>
     ),
   },

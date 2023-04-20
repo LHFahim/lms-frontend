@@ -35,11 +35,14 @@ const AdminBookItem = ({ book }) => {
   const handleBookDelete = async id => {
     console.log('id', id);
     try {
-      const res = axios.delete(`http://localhost:5000/api/v1/admin-books/a`, {
-        headers: {
-          Authorization: user.user.accessToken,
-        },
-      });
+      const res = axios.delete(
+        `http://localhost:5000/api/v1/admin-books/${id}`,
+        {
+          headers: {
+            Authorization: user.user.accessToken,
+          },
+        }
+      );
     } catch (error) {
       console.log(error.response);
     }
