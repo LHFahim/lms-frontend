@@ -21,15 +21,26 @@ const AdminJob = ({ jobRequest }) => {
           },
         }
       );
-      console.log(
-        '🚀 ~ file: AdminJob.js:29 ~ handleAcceptJob ~ response:',
-        response.data.success
-      );
 
       if (response.data.success) jobAcceptedToast();
     } catch (error) {
       console.log(error.response);
       unableToAcceptToast();
+    }
+  };
+  const handleDeclineJob = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/admin-jobs/${jobRequest.id}/decline`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: user.user.accessToken,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
@@ -85,6 +96,12 @@ const AdminJob = ({ jobRequest }) => {
               className="text-orange-500 font-black"
             >
               Accept
+            </button>
+            <button
+              onClick={() => handleDeclineJob()}
+              className="text-orange-500 font-black"
+            >
+              Decline
             </button>
           </div>
         </div>
