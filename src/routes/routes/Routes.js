@@ -17,6 +17,7 @@ import Dashboard from '../../components/Dashboard/Dashboard';
 import Error from '../../components/Error/Error';
 import FilteredResults from '../../components/FilteredResults/FilteredResults';
 
+import AdminBalanceIndex from '../../components/Admin/AdminBalance/AdminBalanceIndex';
 import AdminBorrowedList from '../../components/Admin/AdminBooks/AdminBorrowedList';
 import AdminListDonatedBooks from '../../components/Admin/AdminDonatePage/AdminListDonatedBooks';
 import AdminCreateJob from '../../components/Admin/AdminJobs/AdminCreateJob';
@@ -124,6 +125,16 @@ export const routes = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <AdminViewJobs />
+      </ProtectedRoutes>
+    ),
+  },
+
+  // balance
+  {
+    path: '/admin/balance',
+    element: (
+      <ProtectedRoutes>
+        <AdminBalanceIndex></AdminBalanceIndex>
       </ProtectedRoutes>
     ),
   },

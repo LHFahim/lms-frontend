@@ -77,6 +77,11 @@ const Footer = () => {
                   Jobs
                 </Link>
               </li>
+              <li>
+                <Link to={`/admin/balance`} className="hover:text-orange-500">
+                  Balance
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
