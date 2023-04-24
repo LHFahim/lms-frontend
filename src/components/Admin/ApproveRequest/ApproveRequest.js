@@ -58,10 +58,16 @@ const ApproveRequest = ({ book, requester }) => {
           <img className="w-2/12" src={avatarURL} alt="" />
         </div>
         <div>
-          <button onClick={() => handleRequestApprove(bookId, requesterId)}>
+          <button
+            className="hover:text-orange-500"
+            onClick={() => handleRequestApprove(bookId, requesterId)}
+          >
             Approve Request
           </button>
-          <button onClick={() => handleRequestDecline(bookId, requesterId)}>
+          <button
+            className="hover:text-orange-500"
+            onClick={() => handleRequestDecline(bookId, requesterId)}
+          >
             Decline Request
           </button>
         </div>

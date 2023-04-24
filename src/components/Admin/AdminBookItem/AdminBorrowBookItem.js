@@ -6,7 +6,7 @@ import './adminBookItem.css';
 
 const AdminBorrowBookItem = ({ book }) => {
   const { user } = useContext(AuthContext);
-
+  // console.log('book ==>', book);
   const {
     title,
     author,
@@ -16,7 +16,7 @@ const AdminBorrowBookItem = ({ book }) => {
     borrowedBy,
 
     id,
-  } = book.bookId;
+  } = book.book;
 
   const { email } = book.borrower;
   const { borrowedDate, returnDate } = book;
@@ -56,7 +56,7 @@ const AdminBorrowBookItem = ({ book }) => {
       <section>
         <div>
           <main>
-            <div className="wrapper mb-10 p-5 border-b-2 border-orange-500 hover:bg-aqua">
+            <div className="grid grid-cols-8 mb-10 p-5 border-b-2 border-orange-500 hover:bg-aqua">
               <img src={image} alt="" />
               <h1>{title}</h1>
               <h1>{author}</h1>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
+import Navbar from '../../Navbar/Navbar';
 import ApproveRequest from '../ApproveRequest/ApproveRequest';
 
 const ApproveBorrowRequest = () => {
@@ -34,9 +35,10 @@ const ApproveBorrowRequest = () => {
   // console.log(borrowRequests);
 
   return (
-    <main>
+    <main className="my-10 ">
+      <Navbar />
       {isAdmin === 'ADMIN' ? (
-        <div className="w-6/12 mx-auto shadow-2xl">
+        <div className="w-6/12 mx-auto shadow-2xl mt-10">
           {borrowRequests.map(request => (
             <ApproveRequest
               key={request.id}

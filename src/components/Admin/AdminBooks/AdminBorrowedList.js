@@ -7,6 +7,7 @@ import AdminBorrowBookItem from '../AdminBookItem/AdminBorrowBookItem';
 
 const AdminBorrowedList = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
+
   const { user } = useContext(AuthContext);
   const isAdmin = user.user.user.panelType;
 
@@ -63,7 +64,7 @@ const AdminBorrowedList = () => {
       </section> */}
       {isAdmin === 'ADMIN' ? (
         <div ref={ref} className="shadow-2xl ">
-          <div className="wrapper p-5 font-black text-2xl">
+          <div className=" grid grid-cols-8 p-5 font-black text-2xl">
             <h1>Image</h1>
             <h1>Title</h1>
             <h1>Author</h1>
@@ -72,12 +73,11 @@ const AdminBorrowedList = () => {
             <h1>Borrower</h1>
             <h1>Issued on</h1>
             <h1>Return on</h1>
-
-            {/* <h1>Updated at</h1> */}
           </div>
+
           {borrowedBooks.map(book => (
             <AdminBorrowBookItem
-              key={book.id}
+              key={book.book.id}
               book={book}
             ></AdminBorrowBookItem>
           ))}

@@ -138,6 +138,15 @@ export const routes = createBrowserRouter([
       </ProtectedRoutes>
     ),
   },
+  // admin approve borrow request
+  {
+    path: `approve-borrow-request`,
+    element: (
+      <ProtectedRoutes>
+        <ApproveBorrowRequest />
+      </ProtectedRoutes>
+    ),
+  },
 
   {
     path: '/',
@@ -197,14 +206,14 @@ export const routes = createBrowserRouter([
           </ProtectedRoutes>
         ),
       },
-      {
-        path: `approve-borrow-request`,
-        element: (
-          <ProtectedRoutes>
-            <ApproveBorrowRequest />
-          </ProtectedRoutes>
-        ),
-      },
+      // {
+      //   path: `approve-borrow-request`,
+      //   element: (
+      //     <ProtectedRoutes>
+      //       <ApproveBorrowRequest />
+      //     </ProtectedRoutes>
+      //   ),
+      // },
       {
         path: `jobs`,
         loader: async () => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -282,7 +282,15 @@ const BookDetails = book => {
                     <h1>
                       {el.madeBy.firstName} {el.madeBy.lastName}
                     </h1>
-                    <small>{el.createdAt}</small>
+                    {/* <small>{el.createdAt}</small> */}
+                    <small>
+                      {/* {new Date(el.createdAt).getFullYear()} */}
+                      {new Date(el.createdAt).getFullYear() +
+                        '-' +
+                        (new Date(el.createdAt).getMonth() + 1) +
+                        '-' +
+                        new Date(el.createdAt).getDate()}
+                    </small>
                   </div>
                 </div>
               );
